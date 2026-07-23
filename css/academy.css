@@ -1,0 +1,460 @@
+/* ============================================================
+   Flight Flare Aviation — academy.css
+   Shared branding, header, footer, About & Contact page styles.
+   Cockpit / instrument-panel theme: deep navy + brass-gold,
+   runway-light accent lines, dial-style dividers.
+   Fonts reused from index.html: Space Grotesk / Inter / JetBrains Mono
+   ============================================================ */
+
+:root {
+  --ff-navy-950: #060d1c;
+  --ff-navy-900: #0a1730;
+  --ff-navy-800: #142850;
+  --ff-navy-700: #1d3a6b;
+  --ff-gold: #d4a24c;
+  --ff-gold-bright: #f0c274;
+  --ff-amber: #e8833f;
+  --ff-cream: #f4f1ea;
+  --ff-fog: #93a2c2;
+  --ff-line: rgba(212, 162, 76, 0.25);
+  --ff-radius: 10px;
+  --ff-font-display: "Space Grotesk", sans-serif;
+  --ff-font-body: "Inter", sans-serif;
+  --ff-font-mono: "JetBrains Mono", monospace;
+}
+
+/* ---------- Academy header strip (drop into index.html topbar) ---------- */
+.ff-brandbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ff-brandbar img.ff-logo {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.ff-brandbar .ff-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.ff-brandbar .ff-brand-text strong {
+  font-family: var(--ff-font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--ff-gold-bright);
+}
+
+.ff-brandbar .ff-brand-text span {
+  font-family: var(--ff-font-mono);
+  font-size: 0.68rem;
+  color: var(--ff-fog);
+  letter-spacing: 0.04em;
+}
+
+/* Nav links for About / Contact inside topbar-actions */
+.ff-nav-link {
+  font-family: var(--ff-font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ff-fog);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ff-nav-link:hover {
+  color: var(--ff-gold-bright);
+  background: rgba(212, 162, 76, 0.08);
+}
+
+/* ---------- Hero strip (homepage, under topbar) ---------- */
+.ff-hero-strip {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 24px;
+  background: linear-gradient(90deg, var(--ff-navy-900), var(--ff-navy-800));
+  border-bottom: 1px solid var(--ff-line);
+}
+
+.ff-hero-strip img {
+  height: 52px;
+  width: auto;
+}
+
+.ff-hero-strip .ff-hero-copy strong {
+  display: block;
+  font-family: var(--ff-font-display);
+  color: var(--ff-cream);
+  font-size: 1.05rem;
+}
+
+.ff-hero-strip .ff-hero-copy em {
+  font-style: normal;
+  font-family: var(--ff-font-mono);
+  font-size: 0.75rem;
+  color: var(--ff-gold);
+  letter-spacing: 0.03em;
+}
+
+/* ---------- Page shell used by aboutus.html / contactus.html ---------- */
+.ff-page-body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at top, var(--ff-navy-800) 0%, var(--ff-navy-950) 65%);
+  font-family: var(--ff-font-body);
+  color: var(--ff-cream);
+}
+
+.ff-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--ff-line);
+  position: sticky;
+  top: 0;
+  background: rgba(6, 13, 28, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.ff-back {
+  font-family: var(--ff-font-mono);
+  font-size: 0.8rem;
+  color: var(--ff-fog);
+  text-decoration: none;
+}
+.ff-back:hover { color: var(--ff-gold-bright); }
+
+.ff-shell {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.ff-eyebrow {
+  font-family: var(--ff-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ff-gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ff-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--ff-gold);
+  display: inline-block;
+}
+
+.ff-shell h1 {
+  font-family: var(--ff-font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 0 0 6px;
+  color: var(--ff-cream);
+}
+
+.ff-tagline {
+  font-family: var(--ff-font-body);
+  font-style: italic;
+  color: var(--ff-fog);
+  font-size: 1rem;
+  margin: 0 0 40px;
+  border-left: 2px solid var(--ff-gold);
+  padding-left: 12px;
+}
+
+.ff-shell p.ff-lead {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #dbe2f2;
+  max-width: 68ch;
+}
+
+/* Instrument-panel card grid */
+.ff-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin: 40px 0;
+}
+
+.ff-panel {
+  background: linear-gradient(160deg, var(--ff-navy-800), var(--ff-navy-900));
+  border: 1px solid var(--ff-line);
+  border-radius: var(--ff-radius);
+  padding: 18px 18px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ff-panel::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ff-gold), transparent);
+}
+
+.ff-panel .ff-panel-value {
+  font-family: var(--ff-font-mono);
+  font-size: 1.6rem;
+  color: var(--ff-gold-bright);
+  letter-spacing: 0.02em;
+}
+
+.ff-panel .ff-panel-label {
+  font-size: 0.78rem;
+  color: var(--ff-fog);
+  margin-top: 4px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* Subject coverage badges */
+.ff-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 8px;
+}
+
+.ff-badge {
+  font-family: var(--ff-font-mono);
+  font-size: 0.72rem;
+  padding: 6px 12px;
+  border: 1px solid var(--ff-line);
+  border-radius: 999px;
+  color: var(--ff-fog);
+  background: rgba(212, 162, 76, 0.05);
+}
+
+/* Section divider — runway lights */
+.ff-runway-divider {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 48px 0 30px;
+}
+.ff-runway-divider span {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--ff-gold);
+  opacity: 0.35;
+}
+.ff-runway-divider span:nth-child(3n) { opacity: 0.9; }
+.ff-runway-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--ff-line);
+}
+
+/* ---------- Contact page: form + details ---------- */
+.ff-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .ff-contact-grid { grid-template-columns: 1fr; }
+}
+
+.ff-contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ff-contact-list li a,
+.ff-contact-list li span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ff-cream);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 12px 14px;
+  border: 1px solid var(--ff-line);
+  border-radius: var(--ff-radius);
+  background: rgba(20, 40, 80, 0.35);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.ff-contact-list li a:hover {
+  border-color: var(--ff-gold);
+  transform: translateX(2px);
+}
+
+.ff-contact-list .ff-icon {
+  font-family: var(--ff-font-mono);
+  font-size: 0.85rem;
+  width: 26px;
+  text-align: center;
+  color: var(--ff-gold-bright);
+}
+
+.ff-contact-list small {
+  display: block;
+  color: var(--ff-fog);
+  font-size: 0.72rem;
+  margin-top: 2px;
+}
+
+/* Form */
+.ff-form {
+  background: linear-gradient(160deg, var(--ff-navy-800), var(--ff-navy-900));
+  border: 1px solid var(--ff-line);
+  border-radius: var(--ff-radius);
+  padding: 26px;
+}
+
+.ff-field {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ff-field label {
+  font-family: var(--ff-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ff-gold);
+}
+
+.ff-field input,
+.ff-field select,
+.ff-field textarea {
+  background: rgba(6, 13, 28, 0.7);
+  border: 1px solid var(--ff-line);
+  border-radius: 6px;
+  padding: 11px 12px;
+  color: var(--ff-cream);
+  font-family: var(--ff-font-body);
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.ff-field input:focus,
+.ff-field select:focus,
+.ff-field textarea:focus {
+  border-color: var(--ff-gold);
+  box-shadow: 0 0 0 3px rgba(212, 162, 76, 0.15);
+}
+
+.ff-field textarea { resize: vertical; min-height: 96px; }
+
+.ff-submit {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--ff-gold), var(--ff-amber));
+  color: var(--ff-navy-950);
+  font-family: var(--ff-font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+.ff-submit:hover { filter: brightness(1.08); }
+.ff-submit:disabled { opacity: 0.6; cursor: wait; }
+
+.ff-form-status {
+  margin-top: 12px;
+  font-family: var(--ff-font-mono);
+  font-size: 0.8rem;
+  min-height: 18px;
+}
+.ff-form-status.ok { color: #6fd39a; }
+.ff-form-status.err { color: #e8756f; }
+
+/* ---------- Footer (site-wide) ---------- */
+.ff-footer {
+  border-top: 1px solid var(--ff-line);
+  background: var(--ff-navy-950);
+  padding: 26px 24px;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ff-footer .ff-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ff-footer .ff-footer-brand img { height: 26px; }
+.ff-footer .ff-footer-brand span {
+  font-family: var(--ff-font-mono);
+  font-size: 0.72rem;
+  color: var(--ff-fog);
+}
+
+.ff-footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.ff-footer-links a {
+  font-family: var(--ff-font-body);
+  font-size: 0.82rem;
+  color: var(--ff-fog);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ff-footer-links a:hover { color: var(--ff-gold-bright); }
+
+.ff-footer-copy {
+  width: 100%;
+  text-align: center;
+  font-family: var(--ff-font-mono);
+  font-size: 0.68rem;
+  color: #4a5a80;
+  margin-top: 8px;
+}
+
+/* ---------- Floating WhatsApp button (optional, add to any page) ---------- */
+.ff-whatsapp-float {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  text-decoration: none;
+  font-size: 1.4rem;
+  z-index: 50;
+  transition: transform 0.15s ease;
+}
+.ff-whatsapp-float:hover { transform: scale(1.06); }

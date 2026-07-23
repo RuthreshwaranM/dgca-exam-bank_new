@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/question-source/(.*)", "destination": "/404.html" },
+    { "source": "/server-data/(.*)", "destination": "/404.html" },
+    { "source": "/build-questions.js", "destination": "/404.html" },
+    { "source": "/package.json", "destination": "/404.html" },
+    { "source": "/package-lock.json", "destination": "/404.html" }
+  ]
+}
