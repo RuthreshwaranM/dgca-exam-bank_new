@@ -3,15 +3,16 @@
    Keys used:
      user:<email>            -> { email, passwordHash, hasPaid, createdAt }
      order:<razorpay_order_id> -> { email, createdAt }
-   Requires env vars UPSTASH_REDIS_REST_URL and
-   UPSTASH_REDIS_REST_TOKEN, which get set automatically once you
-   add "Upstash for Redis" to this project from the Vercel
-   Marketplace (Storage tab -> Create Database / Marketplace ->
-   Upstash for Redis). (@vercel/kv is deprecated — this is the
-   package Vercel now points to.)
+   Requires the Upstash Redis REST URL + token, which get set
+   automatically once you connect a Redis database to this
+   project (Storage tab). Vercel has used a couple of different
+   names for these over time, so we check both.
    ============================================================ */
 const { Redis } = require("@upstash/redis");
-const redis = Redis.fromEnv();
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
+});
 
 function userKey(email) {
   return `user:${email.trim().toLowerCase()}`;
