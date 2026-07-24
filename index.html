@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGCA Exam Bank &middot; CPL/ATPL Question Practice</title>
+<meta name="description" content="Practice and test yourself on DGCA CPL/ATPL question banks.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.min.css">
+<link rel="stylesheet" href="css/academy.min.css">
+<link rel="icon" href="logo1.png" type="image/png">
+<script src="js/protection.min.js" defer></script>
+
+<style>
+/* ---- Academy promo popup ---- */
+#ffa-promo-overlay{
+  position:fixed; inset:0; background:rgba(6,10,20,0.72);
+  backdrop-filter:blur(3px); z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  padding:20px; opacity:0; pointer-events:none; transition:opacity .25s ease;
+}
+#ffa-promo-overlay.ffa-show{ opacity:1; pointer-events:auto; }
+#ffa-promo-card{
+  position:relative; width:100%; max-width:440px; max-height:88vh; overflow-y:auto;
+  background:linear-gradient(180deg,#0c1220 0%, #0a0e18 100%);
+  border:1px solid rgba(255,255,255,0.08); border-radius:18px;
+  padding:28px 24px 24px; color:#eef1f7;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  transform:translateY(12px) scale(.98); transition:transform .25s ease;
+  font-family:'Inter',sans-serif;
+}
+#ffa-promo-overlay.ffa-show #ffa-promo-card{ transform:translateY(0) scale(1); }
+#ffa-promo-close{
+  position:absolute; top:14px; right:14px; width:32px; height:32px;
+  border-radius:50%; border:none; background:rgba(255,255,255,0.08);
+  color:#fff; font-size:18px; line-height:1; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+#ffa-promo-close:hover{ background:rgba(255,255,255,0.16); }
+.ffa-promo-brand{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.ffa-promo-brand img{ width:36px; height:36px; border-radius:8px; object-fit:cover; }
+.ffa-promo-brand strong{ font-family:'Space Grotesk',sans-serif; font-size:16px; letter-spacing:.3px; }
+#ffa-promo-card h2{
+  font-family:'Space Grotesk',sans-serif; font-size:22px; line-height:1.3; margin:0 0 6px;
+}
+#ffa-promo-card .ffa-tag{ color:#9aa4b8; font-size:13.5px; margin:0 0 18px; }
+.ffa-points{ list-style:none; margin:0 0 20px; padding:0; display:flex; flex-direction:column; gap:9px; }
+.ffa-points li{ display:flex; gap:9px; font-size:14px; line-height:1.45; }
+.ffa-points li .tick{ color:#ffd23f; flex-shrink:0; }
+.ffa-points li .plane{ color:#4fa8ff; flex-shrink:0; }
+.ffa-cta-dm{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:13px 16px; margin-bottom:14px;
+  background:#25D366; color:#04240f; font-weight:700; font-size:15px;
+  border-radius:12px; text-decoration:none; font-family:'Inter',sans-serif;
+}
+.ffa-cta-dm:hover{ filter:brightness(1.05); }
+.ffa-urgency{
+  font-size:12.5px; color:#ffd23f; text-align:center; margin:0 0 18px; letter-spacing:.2px;
+}
+.ffa-socials{ display:flex; gap:10px; }
+.ffa-socials a{
+  flex:1; display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:10px 8px; border-radius:10px; border:1px solid rgba(255,255,255,0.1);
+  color:#eef1f7; text-decoration:none; font-size:12.5px; font-weight:600;
+  background:rgba(255,255,255,0.04);
+}
+.ffa-socials a img{ width:18px; height:18px; }
+.ffa-socials a:hover{ background:rgba(255,255,255,0.09); }
+</style>
+
+</head>
+<body>
+
+<!-- ================= ACADEMY PROMO POPUP ================= -->
+<div id="ffa-promo-overlay">
+  <div id="ffa-promo-card" role="dialog" aria-modal="true" aria-labelledby="ffa-promo-title">
+    <button id="ffa-promo-close" aria-label="Close">&times;</button>
+
+    <div class="ffa-promo-brand">
+      <img src="logo1.png" alt="Flight Flare Aviation">
+      <strong>FLIGHT FLARE AVIATION</strong>
+    </div>
+
+    <h2 id="ffa-promo-title">DGCA CPL / ATPL Classes — New Batch Forming</h2>
+    <p class="ffa-tag">Anybody can teach you to take off. We'll teach you to land.</p>
+
+    <ul class="ffa-points">
+      <li><span class="tick">✔</span> Guarantee to clear your exam — with full understanding, not just rote learning</li>
+      <li><span class="tick">✔</span> Not just for DGCA — we train you like a captain</li>
+      <li><span class="plane">✈</span> Detailed notes &amp; chapter-wise flashcards</li>
+      <li><span class="plane">✈</span> Quick cheat sheets &amp; DGCA-style question bank (the one you're using right now!)</li>
+      <li><span class="plane">✈</span> Previous exam papers included</li>
+      <li><span class="plane">✈</span> One-on-one attention — no crowded classes, personal focus</li>
+    </ul>
+
+    <a class="ffa-cta-dm"
+       href="https://chat.whatsapp.com/LTxzz9GUiR76gEaAay6q2n"
+       target="_blank" rel="noopener">
+       💬 DM us on WhatsApp for course details
+    </a>
+
+    <p class="ffa-urgency">🔥 Seats for the upcoming batch are limited — message us to reserve yours</p>
+
+    <div class="ffa-socials">
+      <a href="https://chat.whatsapp.com/LTxzz9GUiR76gEaAay6q2n" target="_blank" rel="noopener">
+        <img src="whatsapplogo.png" alt="WhatsApp"> Community
+      </a>
+      <a href="https://t.me/FlightFlareAviation" target="_blank" rel="noopener">
+        <img src="telegramlogo.png" alt="Telegram"> Telegram
+      </a>
+      <a href="#" id="ffa-insta-link" target="_blank" rel="noopener">
+        <img src="instagramlogo.png" alt="Instagram"> Instagram
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('ffa-promo-overlay');
+  var closeBtn = document.getElementById('ffa-promo-close');
+
+  // TODO: replace with your real Instagram handle URL
+  document.getElementById('ffa-insta-link').href = 'https://www.instagram.com/flightflare_aviation?igsh=N3V6bmM2NXBtbWVz';
+
+  function openPromo(){ overlay.classList.add('ffa-show'); }
+  function closePromo(){ overlay.classList.remove('ffa-show'); sessionStorage.setItem('ffa_promo_seen','1'); }
+
+  if(!sessionStorage.getItem('ffa_promo_seen')){
+    setTimeout(openPromo, 400);
+  }
+
+  closeBtn.addEventListener('click', closePromo);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closePromo(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closePromo(); });
+})();
+</script>
+<!-- =============== END ACADEMY PROMO POPUP =============== -->
+
+<header class="topbar">
+  <a href="aboutus.html" class="ff-brandbar" style="cursor:pointer;">
+    <img src="logo1.png" alt="Flight Flare Aviation" class="ff-logo">
+    <div class="ff-brand-text">
+      <strong>FLIGHT FLARE AVIATION</strong>
+      <span>DGCA EXAM BANK</span>
+    </div>
+  </a>
+  <div class="topbar-actions">
+    <a href="aboutus.html" class="ff-nav-link">About Us</a>
+    <a href="contactus.html" class="ff-nav-link">Contact Us</a>
+    <a href="https://dgca-rtr-simulator.vercel.app/login.html" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" title="Open RTR Simulator">RTR &nearr;</a>
+    <a href="#/stats" class="icon-btn" title="Progress">📈</a>
+    <a href="#/bookmarks" class="icon-btn" title="Bookmarks">★</a>
+    <a href="#/mistakes" class="icon-btn" title="Revise mistakes">⟲</a>
+    <span id="ff-account-widget" style="display:flex; gap:8px; align-items:center;"></span>
+  </div>
+</header>
+
+<!-- Academy hero strip -->
+<div class="ff-hero-strip">
+  <img src="logo2.png" alt="Flight Flare Aviation">
+  <div class="ff-hero-copy">
+    <strong>Flight Flare Aviation</strong>
+    <em>Anybody can teach you to take off, but we'll teach you to land.</em>
+  </div>
+</div>
+
+<nav class="breadcrumbs" id="breadcrumbs"></nav>
+
+<main id="app"></main>
+
+<!-- PARSER — must load before the subject data files -->
+<script src="js/parser.min.js"></script>
+
+<!-- SUBJECT DATA — free sample only, auto-generated by build-questions.js.
+     The full bank is fetched from /api/questions.js for paid users
+     (see js/auth.js). To add/edit questions, edit files in
+     /question-source/*.js and re-run `node build-questions.js`. -->
+<script src="data/free-questions.min.js"></script>
+
+<!-- AUTH + PAYWALL — must load before app.js -->
+<script src="js/auth.min.js"></script>
+
+<!-- APPLICATION ENGINE -->
+<script src="js/app.min.js"></script>
+
+<!-- Academy footer -->
+<footer class="ff-footer">
+  <div class="ff-footer-brand">
+    <img src="logo1.png" alt="Flight Flare Aviation">
+    <span>FLIGHT FLARE AVIATION</span>
+  </div>
+  <div class="ff-footer-links">
+    <a href="aboutus.html">About Us</a>
+    <a href="contactus.html">Contact Us</a>
+    <a href="https://chat.whatsapp.com/LTxzz9GUiR76gEaAay6q2n" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://t.me/FlightFlareAviation" target="_blank" rel="noopener">Telegram</a>
+    <a href="tel:+91 9360736138">Call</a>
+  </div>
+  <div class="ff-footer-copy">&copy; <span id="ff-year"></span> Flight Flare Aviation. All rights reserved.</div>
+</footer>
+
+<a href="https://chat.whatsapp.com/LTxzz9GUiR76gEaAay6q2n" target="_blank" rel="noopener" class="ff-whatsapp-float" title="Chat on WhatsApp">💬</a>
+
+<script>document.getElementById('ff-year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
