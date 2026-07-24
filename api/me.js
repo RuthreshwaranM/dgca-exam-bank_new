@@ -2,6 +2,7 @@ const { getSession } = require("./_lib/auth");
 const { getUser } = require("./_lib/db");
 
 module.exports = async (req, res) => {
+  res.setHeader("Cache-Control", "private, no-store");
   const session = getSession(req);
   if (!session) return res.status(200).json({ loggedIn: false });
 

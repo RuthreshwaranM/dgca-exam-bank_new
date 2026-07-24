@@ -9,7 +9,7 @@
 window.AUTH = { loggedIn: false, hasPaid: false, email: null };
 window.META = []; // subject/chapter free-vs-total counts, filled below
 
-const EXAM_PRICE_DISPLAY = "\u20B9499"; // keep in sync with EXAM_BANK_PRICE_INR env var; display only
+const EXAM_PRICE_DISPLAY = "\u20B9199"; // keep in sync with EXAM_BANK_PRICE_INR env var; display only
 
 async function initAuthAndQuestions() {
   try {

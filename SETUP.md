@@ -80,4 +80,37 @@ as before).
   you'd rather have that.
 - `js/protection.js` (the anti-cheat layer) already expected this
   exact gate setup — its comments literally describe this
-  architecture, so nothing needed to change there.
+  architecture, so nothing needed to change there. It does NOT send
+  email alerts on this site (by design/decision) — it only blocks,
+  blurs, and detects DevTools. If you ever want email alerts added
+  back the way RTR has them, that's a deliberate ask, not a default.
+
+## 8. Security hardening added in this version
+- **Rate limiting** on signup, login, create-order, verify-payment,
+  questions, and alert — all backed by the same Upstash Redis you
+  already connected. Stops scripted abuse (password guessing, order
+  spam, log flooding) without affecting a normal student.
+- **Account lockout** — 6 wrong passwords for the same email locks
+  that email for 15 minutes, regardless of which IP is trying.
+- **CSRF / origin check** — set `ALLOWED_ORIGIN` in your environment
+  variables to your real site URL (e.g.
+  `https://dgca-exam-bank-new.vercel.app`). Once set, login/signup/
+  payment requests whose Origin header doesn't match get rejected —
+  this is what stops another website from quietly using a logged-in
+  visitor's cookies against your API. Leave it unset and this check
+  is skipped (so it won't break anything before you configure it,
+  but set it before going fully live).
+- **Timing-safe signature check** in `verify-payment.js` — prevents a
+  byte-by-byte timing attack against the Razorpay signature check.
+- **Security headers** in `vercel.json` — Content-Security-Policy,
+  X-Frame-Options (clickjacking), X-Content-Type-Options, HSTS,
+  Referrer-Policy, and Permissions-Policy, all tuned to still allow
+  the Razorpay checkout iframe/scripts and Google Fonts.
+- **Minified production build** — run `node build-prod.js` after
+  `node build-questions.js` (or `npm run build` for both) before
+  deploying. This strips whitespace/variable names from the shipped
+  JS/CSS so casual "view source" isn't a readable copy-paste of your
+  code. Read the comment at the top of `build-prod.js` for the honest
+  limits of this — it's friction, not real protection; the actual
+  protection is the server-side gate in `/api/questions.js`, since
+  that's the part that never reaches the browser at all.
