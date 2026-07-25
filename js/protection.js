@@ -14,21 +14,6 @@
    session cookie — this script just makes casual copying annoying
    and notifies you when someone tries harder.
 
-   MOBILE SCREENSHOTS SPECIFICALLY — a fact, not a limitation of this
-   script: no website, on any platform, can detect or block the native
-   OS screenshot gesture (power+volume, or the swipe/gesture shortcut).
-   That capture happens entirely inside the phone's operating system,
-   below the browser, with zero visibility to any webpage's JavaScript.
-   This is true of every site on the internet, including banks and
-   streaming apps — the ones that DO stop screenshots are native apps
-   using OS-level DRM APIs a browser tab is never given access to.
-   Desktop Ctrl+P / Print Screen CAN be intercepted (see below) because
-   those go through the browser itself, not around it.
-   Given that gap, the realistic mitigation below is a watermark: it
-   doesn't stop a screenshot, but it puts an identifying mark in every
-   leaked image, which is the same approach exam platforms and DRM
-   video services fall back on for this exact scenario.
-
    Add to any page:  <script src="js/protection.js" defer></script>
 ============================================================ */
 (function () {
@@ -37,48 +22,6 @@
   const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   const COOLDOWN_MS = 30000;
   const lastAlerted = {};
-
-  /* ── TRACEABLE WATERMARK ──
-     Tiled, low-opacity overlay showing the logged-in user's email +
-     date. Doesn't block screenshots (nothing can) — it makes any
-     leaked screenshot traceable back to the account that took it.
-     auth.js calls window.__ffaSetWatermark(email) once login state
-     is known; before that (or for anonymous free-sample visitors)
-     it falls back to a generic label. */
-  let watermarkEl = null;
-  function buildWatermarkTile(label) {
-    return `<div style="
-        transform:rotate(-28deg);
-        font-family:Inter,Arial,sans-serif;
-        font-size:13px;
-        font-weight:600;
-        color:rgba(255,255,255,0.06);
-        white-space:nowrap;
-      ">${label}</div>`;
-  }
-  function renderWatermark(label) {
-    if (!watermarkEl) {
-      watermarkEl = document.createElement('div');
-      watermarkEl.id = 'ffa-watermark';
-      watermarkEl.style.cssText =
-        'position:fixed;inset:0;z-index:999997;pointer-events:none;overflow:hidden;display:grid;' +
-        'grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(10,1fr);place-items:center;';
-      document.body.appendChild(watermarkEl);
-    }
-    const safeLabel = String(label).replace(/[<>&]/g, '');
-    let tiles = '';
-    for (let i = 0; i < 60; i++) tiles += buildWatermarkTile(safeLabel);
-    watermarkEl.innerHTML = tiles;
-  }
-  window.__ffaSetWatermark = function (emailOrLabel) {
-    const now = new Date().toLocaleDateString('en-IN');
-    renderWatermark(`${emailOrLabel || 'FlightFlareAviation.com'} · ${now}`);
-  };
-  if (document.body) {
-    window.__ffaSetWatermark('FlightFlareAviation.com');
-  } else {
-    document.addEventListener('DOMContentLoaded', () => window.__ffaSetWatermark('FlightFlareAviation.com'));
-  }
 
   function canAlert(type) {
     const now = Date.now();
@@ -242,17 +185,6 @@
         document.body.style.filter = '';
       }, 3000);
     });
-
-    // Belt-and-braces: some browsers fire this media query change instead
-    // of (or in addition to) beforeprint.
-    if (window.matchMedia) {
-      const mq = window.matchMedia('print');
-      const onPrintChange = (mql) => {
-        if (mql.matches) sendAlert('Print media query triggered');
-      };
-      if (mq.addEventListener) mq.addEventListener('change', onPrintChange);
-      else if (mq.addListener) mq.addListener(onPrintChange);
-    }
 
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) showBlur();

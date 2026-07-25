@@ -1,17 +1,11 @@
 const bcrypt = require("bcryptjs");
 const { getUser, createUser } = require("./_lib/db");
 const { signSession, setSessionCookie } = require("./_lib/auth");
-const { rateLimit, tooMany, assertSameOrigin } = require("./_lib/security");
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-  if (!assertSameOrigin(req, res)) return;
-
-  // 5 new accounts per IP per hour — slows down mass fake-account creation.
-  const allowed = await rateLimit(req, "signup", 5, 60 * 60);
-  if (!allowed) return tooMany(res);
 
   try {
     const { email, password } = req.body || {};

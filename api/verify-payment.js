@@ -1,14 +1,9 @@
 const crypto = require("crypto");
 const { getSession } = require("./_lib/auth");
 const { getOrder, markPaid } = require("./_lib/db");
-const { rateLimit, tooMany, assertSameOrigin } = require("./_lib/security");
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
-  if (!assertSameOrigin(req, res)) return;
-
-  const allowed = await rateLimit(req, "verify-payment", 15, 10 * 60);
-  if (!allowed) return tooMany(res);
 
   const session = getSession(req);
   if (!session) return res.status(401).json({ error: "Please log in first." });
@@ -31,12 +26,7 @@ module.exports = async (req, res) => {
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
       .digest("hex");
 
-    // Timing-safe compare — avoids leaking the correct signature one byte
-    // at a time via response-time differences.
-    const a = Buffer.from(expected, "hex");
-    const b = Buffer.from(String(razorpay_signature || ""), "hex");
-    const matches = a.length === b.length && crypto.timingSafeEqual(a, b);
-    if (!matches) {
+    if (expected !== razorpay_signature) {
       return res.status(400).json({ error: "Payment verification failed." });
     }
 

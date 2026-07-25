@@ -274,23 +274,6 @@
   .ff-contact-grid { grid-template-columns: 1fr; }
 }
 
-/* ---------- Responsive pass — brand bar / hero / footer ---------- */
-@media (max-width: 780px) {
-  .ff-hero-strip { padding: 14px 16px; gap: 12px; }
-  .ff-hero-strip img { height: 40px; }
-  .ff-hero-strip .ff-hero-copy strong { font-size: 0.92rem; }
-  .ff-hero-strip .ff-hero-copy em { font-size: 0.68rem; }
-}
-
-@media (max-width: 600px) {
-  .ff-brandbar img.ff-logo { height: 28px; }
-  .ff-brandbar .ff-brand-text strong { font-size: 0.82rem; }
-  .ff-brandbar .ff-brand-text span { font-size: 0.6rem; }
-  .ff-hero-strip { flex-direction: column; align-items: flex-start; text-align: left; }
-  .ff-footer { flex-direction: column; gap: 14px; text-align: center; }
-  .ff-footer-links { flex-wrap: wrap; justify-content: center; }
-}
-
 .ff-contact-list {
   list-style: none;
   margin: 0;

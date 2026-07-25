@@ -9,7 +9,7 @@
 window.AUTH = { loggedIn: false, hasPaid: false, email: null };
 window.META = []; // subject/chapter free-vs-total counts, filled below
 
-const EXAM_PRICE_DISPLAY = "\u20B910"; // TEMP TEST PRICE — keep in sync with EXAM_BANK_PRICE_INR env var; display only
+const EXAM_PRICE_DISPLAY = "\u20B9499"; // keep in sync with EXAM_BANK_PRICE_INR env var; display only
 
 async function initAuthAndQuestions() {
   try {
@@ -32,12 +32,6 @@ async function initAuthAndQuestions() {
     } catch (e) {
       console.warn("Could not load full question bank — showing free sample.", e);
     }
-  }
-
-  // Update the traceable watermark (set up by protection.js) now that we
-  // know who's logged in — keeps a leaked screenshot traceable to an account.
-  if (window.__ffaSetWatermark) {
-    window.__ffaSetWatermark(window.AUTH.loggedIn ? window.AUTH.email : null);
   }
 }
 
